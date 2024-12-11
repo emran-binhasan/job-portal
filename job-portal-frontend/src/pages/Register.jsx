@@ -115,10 +115,8 @@ const Register = () => {
                     >
                       I agree to the{" "}
                       <span className="text-blue-600 dark:text-blue-400">
-                        Terms, Privacy Policy,
-                      </span>{" "}
-                      and{" "}
-                      <span className="text-blue-600 dark:text-blue-400">Fees</span>
+                        Terms and Conditions
+                      </span>
                     </label>
                   </div>
   

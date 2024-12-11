@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import loginLottieData from "../assets/lottie/login.json";
 import Lottie from "lottie-react";
+import AuthContext from "../context/AuthContext";
 const Login = () => {
+  const{loginUser} = useContext(AuthContext)
   const handleLogin = (event) => {
     event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    loginUser(email, password)
+    .then(result => {
+      const user = result.user;
+      console.log(user)
+    })
+    
   }
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900 relative">
@@ -49,7 +60,7 @@ const Login = () => {
                 type="submit"
                 className="btn btn-primary w-full py-3 text-white text-lg font-semibold transition-all duration-300"
               >
-                Create Account
+                Login
               </button>
             </form>
             <div className="mt-4">
@@ -59,12 +70,12 @@ const Login = () => {
             </div>
 
             <p className="text-center text-gray-600 dark:text-gray-400 mt-4">
-              Already have an account?{" "}
+              Don't have an account?
               <Link
                 to="/auth/register"
                 className="text-blue-600 hover:underline dark:text-blue-400"
               >
-                Log in
+                Register
               </Link>
             </p>
           </div>
