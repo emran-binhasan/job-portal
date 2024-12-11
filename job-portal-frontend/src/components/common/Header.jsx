@@ -12,18 +12,18 @@ const Header = () => {
 
   const navLinks = (
     <>
-      <NavLink>Home</NavLink>
-      <NavLink>Jobs</NavLink>
-      <NavLink>Employers</NavLink>
-      <NavLink>Blogs</NavLink>
-      <NavLink>Contact Us</NavLink>
-      <NavLink>Register</NavLink>
-      <NavLink>Login</NavLink>
+      <NavLink to={'/'}>Home</NavLink>
+      <NavLink to={'/jobs'}>Jobs</NavLink>
+      <NavLink to={'/employers'}>Employers</NavLink>
+      <NavLink to={'/blogs'}>Blogs</NavLink>
+      <NavLink to={'/contact'}>Contact</NavLink>
+      <NavLink to={'/auth/register'}>Register</NavLink>
+      <NavLink to={'/auth/login'}>Login</NavLink>
     </>
   );
 
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md">
+    <header className="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md max-w-7xl mx-auto">
       <div className="flex justify-between items-center px-4 py-3">
         {/* Left Section */}
         <div className="font-medium text-lg">Job Portal</div>
@@ -46,7 +46,7 @@ const Header = () => {
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <nav className="flex flex-col space-y-6 py-10 text-center text-lg border h-2/3 justify-center">
+        <nav className="flex flex-col space-y-6 py-10 text-center text-lg h-2/3 justify-center">
           {navLinks}
         </nav>
       </div>
