@@ -16,13 +16,11 @@ const Register = () => {
         const photoURL = form.photoURL.value;
 
         createUser(email,password)
-        .then(result => {
-            const user = result.user;
+        .then(() => {
             updateNewUser({
                 displayName:name,
                 photoURL:photoURL
             })
-            console.log(user)
             
         })
 
