@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import loginLottieData from "../assets/lottie/login.json";
 import Lottie from "lottie-react";
 import AuthContext from "../context/AuthContext";
 const Login = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const{loginUser,setUser} = useContext(AuthContext)
+  console.log(location)
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -15,8 +17,10 @@ const Login = () => {
     loginUser(email, password)
     .then(result => {
       const user = result.user;
-      navigate('/')
+      
+      navigate(`${location.state?location.state:'/'}`)
     })
+    .catch(error => console.log(error))
     
   }
   return (
