@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import JobCard from './JobCard';
 const LatestJobs = () => {

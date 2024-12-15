@@ -22,10 +22,10 @@ const Footer = () => {
               href="mailto:info@visaglide.com"
               className="text-blue-400 hover:text-blue-600"
             >
-              info@visaglide.com
+              info@jobportal.com
             </a>
           </p>
-          <p className="text-sm text-gray-500">Phone: +8801601262260</p>
+       
         </div>
 
         {/* Social Media Links */}

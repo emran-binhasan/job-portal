@@ -1,38 +1,76 @@
-import { IoBagOutline, IoFlashOutline, IoTimeOutline } from "react-icons/io5";
-import { IoLocationOutline } from "react-icons/io5";
-import {Link} from 'react-router-dom'
-const JobCard = ({ job }) => {
-  console.log(job);
-  const {
-    applicationDeadline,category,company,
-    company_logo,description,hr_email,
-    hr_name,jobType,location,requirements,
-    responsibilities,salaryRange,status,title,_id,
-  } = job;
-  return (
-    <div className="flex-flex-col border rounded-lg shadow-lg px-2 py-1 space-y-2">
-      <IoFlashOutline className="text-green-400 ml-auto w-6 h-6" />
-      <div className="flex items-center">
-        <div>
-          <img src={company_logo} className="w-10"
-           alt="company_logo" />
-        </div>
-        <div>
+import { IoBagOutline, IoFlashOutline, IoTimeOutline, IoLocationOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
-          <h4>{company}</h4>
-          <p><IoLocationOutline className="inline"/> {location}</p>
+const JobCard = ({ job }) => {
+  const {
+    applicationDeadline,
+    category,
+    company,
+    company_logo,
+    description,
+    hr_email,
+    hr_name,
+    jobType,
+    location,
+    requirements,
+    responsibilities,
+    salaryRange,
+    status,
+    title,
+    _id,
+  } = job;
+
+  return (
+    <div className="flex flex-col justify-between border rounded-lg shadow-lg p-4 bg-white dark:bg-gray-800 hover:shadow-xl transition-shadow duration-200">
+      {/* Top Section */}
+      <div>
+        <div className="flex justify-between items-start mb-3">
+          <img
+            src={company_logo}
+            alt="Company Logo"
+            className="w-14 h-14 object-contain rounded-md border"
+          />
+          <IoFlashOutline className="text-green-500 w-6 h-6" title="Urgent Hiring" />
+        </div>
+
+        <div className="mb-3">
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+            {title}
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1">
+            <IoLocationOutline /> {location}
+          </p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1">
+            <IoBagOutline /> {jobType}
+          </p>
+        </div>
+
+        <p className="text-sm text-gray-700 dark:text-gray-300 mb-3 line-clamp-3">
+          {description}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-3">
+          {requirements.map((req, index) => (
+            <span
+              key={index}
+              className="text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-lg border border-gray-300 dark:border-gray-600"
+            >
+              {req}
+            </span>
+          ))}
         </div>
       </div>
-      <h4>{title}</h4>
-      <p className="flex items-center gap-1"><IoBagOutline className="inline" />{jobType}</p>
-      <p>{description}</p>
-      <p>{status}</p>
-      <div className="flex gap-2 flex-wrap">
-      {requirements.map(req => <span className="border text-sm px-1 py-0.5">{req}</span>)}
-      </div>
-      <div className="flex justify-between">
-        <h4>{salaryRange.min}-{salaryRange.max}/{salaryRange.currency}</h4>
-       <Link to={`/job/${_id}`}> <button className="border rounded px-2 py-0.5">Apply Now</button></Link>
+
+      {/* Bottom Section */}
+      <div className="flex justify-between items-center mt-4">
+        <div className="text-sm text-gray-800 dark:text-gray-300">
+          <span className="font-medium">{salaryRange.min}-{salaryRange.max}</span> {salaryRange.currency}
+        </div>
+        <Link to={`/job/${_id}`}>
+          <button className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+            Apply Now
+          </button>
+        </Link>
       </div>
     </div>
   );

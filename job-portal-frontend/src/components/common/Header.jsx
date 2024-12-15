@@ -21,6 +21,7 @@ const Header = () => {
       <NavLink to={'/employers'}>Employers</NavLink>
       <NavLink to={'/blogs'}>Blogs</NavLink>
       <NavLink to={'/contact'}>Contact</NavLink>
+      <NavLink to={'/applications'}>Applications</NavLink>
       {user?<button onClick={logOutUser}>Sign Out</button>:
       <>
       <NavLink to={'/auth/register'}>Register</NavLink>
