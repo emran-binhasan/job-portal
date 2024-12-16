@@ -49,6 +49,7 @@ async function run() {
       const result = await jobCollection.findOne(query);
       res.send(result)
     })
+
     app.get('/application', async(req , res)=> {
       const email = req.query.email;
       const query = {applicant_email:email};
@@ -68,10 +69,7 @@ async function run() {
 
       res.send(result);
     })
-
-
-
-
+ 
     app.post('/applicaions', async(req , res)=> {
       const application = req.body;
       const cursor = jobApplicationCollection.insertOne(application);
@@ -79,6 +77,12 @@ async function run() {
       res.send(result);
     })
 
+    app.post('/jobs', async(req, res)=> {
+      const job = req.body;
+      const cursor = jobCollection.insertOne(job)
+      const result = await cursor;
+      res.send(result)
+    })
 
 
 

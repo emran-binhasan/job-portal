@@ -11,12 +11,12 @@ const Banner = () => {
             duration:5,
             repeat:Infinity,
             repeatType:"reverse"
-          }} className="max-w-sm rounded-l-3xl border-teal-600 border-t-4 border-r-4 shadow-2xl" />
-          <motion.img src={team2} animate={{x:[120,150,120]}} transition={{
+          }} className="max-w-60  mx-auto md:max-w-sm rounded-l-3xl border-teal-600 border-t-4 border-r-4 shadow-2xl" />
+          <motion.img src={team2} animate={{x:[-30,-60,-30]}} transition={{
             duration:5,
             repeat:Infinity,
             repeatType:"reverse"
-          }} className="max-w-sm rounded-r-3xl border-teal-600 border-b-4 border-l-4 shadow-2xl" />
+          }} className="max-w-60  mx-auto md:max-w-sm rounded-r-3xl border-teal-600 border-b-4 border-l-4 shadow-2xl" />
         </div>
         <div className="flex-1">
           <motion.h1
@@ -29,7 +29,7 @@ const Banner = () => {
               repeat: Infinity,
               repeatType: "reverse", // Reverses the movement for a loop
             }}
-            className="text-4xl"
+            className="text-2xl md:text-4xl "
           >
             Get Latest{" "}
             <motion.span

@@ -22,7 +22,11 @@ const Header = () => {
       <NavLink to={'/blogs'}>Blogs</NavLink>
       <NavLink to={'/contact'}>Contact</NavLink>
       <NavLink to={'/applications'}>Applications</NavLink>
-      {user?<button onClick={logOutUser}>Sign Out</button>:
+      {user?
+      <>
+      <NavLink to={'/addjobs'}>Add Jobs</NavLink>
+      <button onClick={logOutUser}>Sign Out</button>
+      </>:
       <>
       <NavLink to={'/auth/register'}>Register</NavLink>
       <NavLink to={'/auth/login'}>Login</NavLink>
