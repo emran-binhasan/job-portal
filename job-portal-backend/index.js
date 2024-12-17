@@ -1,10 +1,16 @@
 const { configDotenv } = require("dotenv");
 const express = require("express");
 const cors = require("cors");
+var jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser')
 const app = express();
 const port = process.env.PORT || 3000;
-app.use(cors());
+app.use(cookieParser())
 app.use(express.json());
+app.use(cors({
+  origin:['http://localhost:5173'],
+  credentials:true
+}));
 configDotenv();
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
@@ -25,13 +31,22 @@ async function run() {
     await client.connect();
 
     await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
+    console.log("ou successfully connected to MongoDB!");
+
+
+    // Database
     const database = client.db("job-portal-db");
-    const userCollection = database.collection("userlist");
     const jobCollection = database.collection("jobs");
-    const jobApplicationCollection = database.collection("applications")
+    const jobApplicationCollection = database.collection("applications");
+
+
+    // Auth related APIs
+    app.post('/jwt', async(req, res) => {
+      const user = req.body;
+      const token = jwt.sign(user, process.env.JWT_SECRET,{expiresIn:'2h'});
+      res.cookie('token',token,{httpOnly:true, secure:false})
+      .send({success:true})
+    })
 
     app.get("/", async (req, res) => {
       res.send("Server is active");
@@ -55,7 +70,7 @@ async function run() {
     })
 
     app.get('/applications', async(req , res)=> {
-
+      console.log(req.cookies);
       if(req.query.email){
         query ={applicant_email:req.query.email} 
       }else{

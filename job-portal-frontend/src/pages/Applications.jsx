@@ -6,7 +6,7 @@ const Applications = () => {
     const{user} = useContext(AuthContext);
     const[myApplications,setMyApplications] = useState([]);;
     useEffect(()=>{
-        axios.get(`http://localhost:3000/applications?email=${user.email}`)
+        axios.get(`http://localhost:3000/applications?email=${user.email}`,{withCredentials:true})
         .then(data => setMyApplications(data.data))
     },[user.email])
     console.log(myApplications)

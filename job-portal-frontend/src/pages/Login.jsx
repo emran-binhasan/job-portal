@@ -4,20 +4,21 @@ import { FaGoogle } from "react-icons/fa";
 import loginLottieData from "../assets/lottie/login.json";
 import Lottie from "lottie-react";
 import AuthContext from "../context/AuthContext";
+import axios from 'axios'
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const{loginUser,setUser} = useContext(AuthContext)
-  console.log(location)
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
     loginUser(email, password)
-    .then(result => {
-      const user = result.user;
-      
+    .then(() => {
+      const user = {email:email};
+      axios.post('http://localhost:3000/jwt',user,{withCredentials: true})
+      .then(data => console.log(data.data))
       navigate(`${location.state?location.state:'/'}`)
     })
     .catch(error => console.log(error))
