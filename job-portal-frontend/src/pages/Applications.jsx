@@ -4,12 +4,12 @@ import AuthContext from '../context/AuthContext';
 
 const Applications = () => {
     const{user} = useContext(AuthContext);
-    const[myApplicaions,setMyApplications] = useState([]);;
+    const[myApplications,setMyApplications] = useState([]);;
     useEffect(()=>{
-        axios.get(`http://localhost:3000/application?email=${user.email}`)
+        axios.get(`http://localhost:3000/applications?email=${user.email}`)
         .then(data => setMyApplications(data.data))
     },[user.email])
-    console.log(myApplicaions)
+    console.log(myApplications)
     return (
 <div className="overflow-x-auto max-w-7xl mx-auto">
   <table className="table">
@@ -23,7 +23,7 @@ const Applications = () => {
       </tr>
     </thead>
     <tbody>
-        {myApplicaions.map(application => 
+        {myApplications.map(application => 
                   <tr key={application._id}>
                   <td>
                     <div className="flex items-center gap-3">

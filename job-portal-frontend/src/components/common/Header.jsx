@@ -25,6 +25,7 @@ const Header = () => {
       {user?
       <>
       <NavLink to={'/addjobs'}>Add Jobs</NavLink>
+      <NavLink to={'/added-jobs'}>Added Jobs</NavLink>
       <button onClick={logOutUser}>Sign Out</button>
       </>:
       <>

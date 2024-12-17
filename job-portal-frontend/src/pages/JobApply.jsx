@@ -17,8 +17,9 @@ const JobApply = () => {
     const githubLink = form.githubLink.value;
     const jobId = params.id
     const applicant_email = user.email;
+    const applicant_name = user.displayName;
     const dateApplied = new Date();
-    const application = {applicant_email,phoneNo,dateApplied,jobId,linkedinLink,resumeLink,githubLink};
+    const application = {applicant_name,applicant_email,phoneNo,dateApplied,jobId,linkedinLink,resumeLink,githubLink};
     console.log(application)
     axios.post('http://localhost:3000/applicaions',application)
     .then(res => console.log(res))
